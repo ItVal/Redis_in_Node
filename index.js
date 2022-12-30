@@ -6,3 +6,21 @@ const DB_url = 'mongodb+srv://valnas:Jonas1994@cluster0.idqeylu.mongodb.net/redi
 import jwt from 'jsonwebtoken';
 
 import redis from 'redis'
+
+
+//middlewares
+app.use(urlencoded({ extended: false}));
+app.use(express.json());
+
+
+ //connexion db
+mongoose.connect(DB_url)
+try{ 
+    app.listen(8000, () => {
+    console.log('DB connected and app is lisning on port 8000')
+    }
+    )
+}
+    catch(err){
+         res.status(500).json(err);
+        }
