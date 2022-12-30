@@ -59,7 +59,17 @@ app.post('/login', async (req, res) => {
     }
 })
 
+ //recuperation token
+ app.get('/token', async(req, res) => {
+    try {
+        const userToken = await redisClient.get("token");
+        res.status(200).json(userToken);
+    } catch (error) {
+        console.log(error);
+    }
 
+
+ })
 
 
 
