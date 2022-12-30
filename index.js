@@ -13,6 +13,12 @@ app.use(urlencoded({ extended: false}));
 app.use(express.json());
 
 
+//redis
+const redisClient = redis.createClient();
+redisClient.connect();
+
+
+
  //connexion db
 mongoose.connect(DB_url)
 try{ 
