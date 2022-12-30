@@ -18,6 +18,22 @@ const redisClient = redis.createClient();
 redisClient.connect();
 
 
+//routes
+//save user
+app.post('/register', async(req, res) => {
+    try{
+        const {username, email, password} = req.body;
+        const newUser = new userModel({username, email, password});
+        await newUser.save();
+        res.status(201).json(newUser);
+    
+    }catch (error){
+        res.status(500).json(error)
+    }
+})
+
+
+
 
  //connexion db
 mongoose.connect(DB_url)
