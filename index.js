@@ -34,6 +34,34 @@ app.post('/register', async(req, res) => {
 
 
 
+//authentification
+app.post('/login', async (req, res) => {
+    const {username, password} = req.body;
+
+    try{
+        const foundUser = await userModel.findOne({username, password});
+        
+        if(foundUser){
+            const token = await jwt.sign(username, 'json_secret');
+            //stockage token
+            redisClient.set('token', token);
+
+            
+            res.status(200).json(token);
+        
+        }
+
+        else{
+            res.json({message: 'User not found'})
+        }
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
+
+
+
+
 
  //connexion db
 mongoose.connect(DB_url)
