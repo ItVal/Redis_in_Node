@@ -1,15 +1,8 @@
 import express, { urlencoded } from 'express';
+import { userModel } from './user.model.js';
+import mongoose from 'mongoose';
 const app = express();
+const DB_url = 'mongodb+srv://valnas:Jonas1994@cluster0.idqeylu.mongodb.net/redis?retryWrites=true&w=majority'
+import jwt from 'jsonwebtoken';
 
-//middlewares
-app.use(urlencoded({ extended: false}));
-app.use(express.json());
-
-
-//routes
-app.post('/register', (req, res) => {
-    
-})
-
-
-app.listen(2030);
+import redis from 'redis'
